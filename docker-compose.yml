@@ -1,0 +1,23 @@
+version: "3"
+
+volumes:
+  db-volume:
+
+networks:
+  express:
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - TZ=Asia/Tokyo
+      - DEBUG=app:*
+    ports:
+      - 8080:3000
+    tty: true
+    volumes:
+      - ./src:/app:cached
+    networks:
+      - express
